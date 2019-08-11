@@ -10,6 +10,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 export const appRoutes: Routes = [
     {
@@ -39,7 +40,8 @@ export const appRoutes: Routes = [
             },
             {
                 path: 'lists',
-                component: ListsComponent
+                component: ListsComponent,
+                resolve: {users: ListsResolver}
             },
             {
                 path: 'messages',
