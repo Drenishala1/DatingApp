@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -30,6 +30,7 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { CommonModule } from '@angular/common';
 
 
 export function tokenGetter() {
@@ -53,6 +54,8 @@ export function tokenGetter() {
    ],
    imports: [
       BrowserModule,
+      CommonModule,
+      ButtonsModule.forRoot(),
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
@@ -60,6 +63,7 @@ export function tokenGetter() {
       BsDatepickerModule.forRoot(),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
+      PaginationModule.forRoot(),
       NgxGalleryModule,
       FileUploadModule,
       JwtModule.forRoot({
