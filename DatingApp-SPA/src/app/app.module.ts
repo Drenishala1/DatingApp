@@ -1,3 +1,6 @@
+import { AdminService } from './_services/admin.service';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
@@ -16,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -34,6 +37,9 @@ import { CommonModule } from '@angular/common';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
 
 
 export function tokenGetter() {
@@ -54,11 +60,17 @@ export function tokenGetter() {
       MemberEditComponent,
       PhotoEditorComponent,
       TimeAgoPipe,
-      MemberMessagesComponent
+      MemberMessagesComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      UserManagementComponent,
+      PhotoManagementComponent,
+      RolesModalComponent
    ],
    imports: [
       BrowserModule,
       CommonModule,
+      ModalModule.forRoot(),
       ButtonsModule.forRoot(),
       HttpClientModule,
       FormsModule,
@@ -90,7 +102,11 @@ export function tokenGetter() {
       MemberEditResolver,
       PreventUnsavedChanges,
       ListsResolver,
-      MessagesResolver
+      MessagesResolver,
+      AdminService
+   ],
+   entryComponents: [
+      RolesModalComponent
    ],
    bootstrap: [
       AppComponent
